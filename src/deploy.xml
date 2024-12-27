@@ -1,14 +1,8 @@
 <deploy>
-    <configuration>
-        <path>~/AccountConfiguration/*</path>
-    </configuration>
     <files>
-        <path>~/FileCabinet/*</path>
+        <path>~/FileCabinet/starter-kit/*</path>
     </files>
     <objects>
         <path>~/Objects/*</path>
     </objects>
-    <translationimports>
-        <path>~/Translations/*</path>
-    </translationimports>
 </deploy>
