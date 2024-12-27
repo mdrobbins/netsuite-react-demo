@@ -37,7 +37,7 @@ function SearchResults({ searchText }) {
                             data.result.map(customer => (
                                 <tr className="odd:bg-slate-800 h-12 hover:bg-indigo-800">
                                     <td className="px-2">
-                                        {customer.companyName}
+                                        <a href={`/app/common/entity/custjob.nl?id=${customer.id}`} target="_blank" rel="noreferrer" className="hover:underline hover:text-indigo-300">{customer.companyName}</a>
                                     </td>
                                     <td className="px-2">{customer.email}</td>
                                     <td className="px-2">{customer.phone}</td>
