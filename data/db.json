@@ -1,0 +1,10 @@
+{
+  "customers": [
+    {
+      "id": 123,
+      "companyName": "DataTek Software",
+      "email": "info@datatek.io",
+      "phone": "123-456-7890"
+    }
+  ]
+}
