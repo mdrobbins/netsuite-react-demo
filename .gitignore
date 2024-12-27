@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /project.json
+/src/FileCabinet/SuiteScripts/starter-kit/datatek-starter-kit.css
+/src/FileCabinet/SuiteScripts/starter-kit/datatek-starter-kit.js

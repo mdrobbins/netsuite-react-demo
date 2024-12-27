@@ -1,6 +1,6 @@
 <deploy>
     <files>
-        <path>~/FileCabinet/starter-kit/*</path>
+        <path>~/FileCabinet/SuiteScripts/starter-kit/*</path>
     </files>
     <objects>
         <path>~/Objects/*</path>
