@@ -7,6 +7,8 @@ function PageHeader() {
       <div className="flex space-x-4">
         <Link to="/">Search Page</Link>
         <Link to="/inventory">Inventory</Link>
+        <Link to="/purchasing">Purchasing</Link>
+        <Link to="/crm">CRM</Link>
       </div>
     </header>
   );

@@ -2,9 +2,28 @@
   "customers": [
     {
       "id": 123,
-      "companyName": "DataTek Software",
+      "companyName": "DataTek Software 1",
       "email": "info@datatek.io",
-      "phone": "123-456-7890"
+      "phone": "123-456-7890",
+      "billingCity": "Rockford",
+      "billingState": "IL",
+      "billingCountry": "United States"
+    }, {
+      "id": 123,
+      "companyName": "DataTek Software 2",
+      "email": "info@datatek.io",
+      "phone": "123-456-7890",
+      "billingCity": "Rockford",
+      "billingState": "IL",
+      "billingCountry": "United States"
+    }, {
+      "id": 123,
+      "companyName": "DataTek Software 3",
+      "email": "info@datatek.io",
+      "phone": "123-456-7890",
+      "billingCity": "Rockford",
+      "billingState": "IL",
+      "billingCountry": "United States"
     }
   ]
 }
