@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {CrmScreen} from "./Components/CrmScreen/CrmScreen";
 import {InventoryScreen} from "./Components/InventoryScreen/InventoryScreen";
 import {PurchasingScreen} from "./Components/PurchasingScreen/PurchasingScreen";
+import {ToastContainer} from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -16,15 +17,20 @@ function App() {
                     <PageHeader />
 
                     <div className="h-full">
-                        <Routes>
-                            <Route path="/" element={<SearchScreen />} />
-                            <Route path="/inventory" element={<InventoryScreen />} />
-                            <Route path="/purchasing" element={<PurchasingScreen />} />
-                            <Route path="/crm" element={<CrmScreen />} />
-                        </Routes>
+                        <div className="p-8 w-full max-w-7xl mx-auto text-slate-300 space-y-8">
+
+                            <Routes>
+                                <Route path="/" element={<SearchScreen/>}/>
+                                <Route path="/inventory" element={<InventoryScreen/>}/>
+                                <Route path="/purchasing" element={<PurchasingScreen/>}/>
+                                <Route path="/crm" element={<CrmScreen/>}/>
+                            </Routes>
+
+                        </div>
                     </div>
                 </HashRouter>
             </QueryClientProvider>
+            <ToastContainer/>
         </div>
     );
 }
