@@ -18,6 +18,8 @@ define([
 
         const actionRouter = {
             searchCustomers,
+            getProducts,
+            getCategories
         };
 
         const handler = actionRouter[action] || invalidAction;
@@ -61,6 +63,47 @@ define([
             })
             .asMappedResults()
             .map(mapPropertiesToCamelCase);
+    }
+
+    function getProducts({ categoryId }) {
+        let filter = '';
+
+        if (categoryId) {
+            filter = `${filter} AND custitem_dt_category = ${categoryId}`;
+        }
+
+        return query.runSuiteQL({
+            query: `
+                select top 10
+                    i.id,
+                    i.itemid as item_number,
+                    i.description,
+                    i.custitem_dt_author as author,
+                    i.custitem_dt_image_url as image_url,
+                    i.itemid as item_name,
+                    i.custitem_dt_category as category_id,
+                    BUILTIN.DF(i.custitem_dt_category) as category,
+                    i.custitem_dt_reviews as review_count,
+                    i.custitem_dt_rating as rating
+                    
+                from item i
+                
+                where 1 = 1
+                    and i.itemtype = 'NonInvtPart'
+                    ${filter}            
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
+    }
+
+    function getCategories() {
+        return query.runSuiteQL({
+            query: `
+                select
+                    id as value,
+                    name as text
+                from customlist_dt_book_category
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
     }
 
     function invalidAction({ action }) {

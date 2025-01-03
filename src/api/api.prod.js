@@ -13,6 +13,22 @@ const api = {
         return await response.json();
     },
 
+    getProducts: async function (categoryId) {
+        const url = `${api.apiEndPoint}&action=getProducts&categoryId=${categoryId}`;
+
+        const response = await this.makeAjaxCall(url);
+
+        return await response.json();
+    },
+
+    getCategories: async function () {
+        const url = `${api.apiEndPoint}&action=getCategories`;
+
+        const response = await this.makeAjaxCall(url);
+
+        return await response.json();
+    },
+
     makeAjaxCall: function (url, data = null, method = 'GET') {
         return fetch(url, {
             method: method,
