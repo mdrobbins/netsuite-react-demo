@@ -13,8 +13,8 @@ const api = {
         return await response.json();
     },
 
-    getProducts: async function (categoryId) {
-        const url = `${api.apiEndPoint}&action=getProducts&categoryId=${categoryId}`;
+    getProducts: async function ({ title, author, category }) {
+        const url = `${api.apiEndPoint}&action=getProducts&title=${title}&author=${author}&category=${category}`;
 
         const response = await this.makeAjaxCall(url);
 

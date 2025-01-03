@@ -2,10 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import api from '../../api';
 import {PageLinks} from "./PageLinks";
 
-function ProductList({ categoryFilter }) {
+function ProductList({ filters }) {
+    const filterValues = Object.values(filters);
+    console.log('filters', filters);
+    console.log('filterValues', filterValues);
+
     const { isPending, isSuccess, isError, data, error } = useQuery({
-        queryKey: ['getProducts', [categoryFilter]],
-        queryFn: () => api.getProducts(categoryFilter),
+        queryKey: ['getProducts', [filterValues]],
+        queryFn: () => api.getProducts(filters),
         retry: false,
     });
 

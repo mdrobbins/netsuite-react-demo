@@ -65,11 +65,19 @@ define([
             .map(mapPropertiesToCamelCase);
     }
 
-    function getProducts({ categoryId }) {
+    function getProducts({ title, author, category }) {
         let filter = '';
 
-        if (categoryId) {
-            filter = `${filter} AND custitem_dt_category = ${categoryId}`;
+        if (title) {
+            filter = `${filter} AND lower(description) like '%${title.toLowerCase()}%'`
+        }
+
+        if (author) {
+            filter = `${filter} AND lower(custitem_dt_author) like '%${author.toLowerCase()}%'`
+        }
+
+        if (category) {
+            filter = `${filter} AND custitem_dt_category = ${category}`;
         }
 
         return query.runSuiteQL({

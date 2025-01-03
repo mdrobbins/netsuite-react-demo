@@ -3,21 +3,17 @@ import {ProductList} from "./ProductList";
 import {useState} from "react";
 
 function InventoryScreen() {
-    const [titleFilter, setTitleFilter] = useState('');
-    const [authorFilter, setAuthorFilter] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('');
+    const [filters, setFilters] = useState({
+        title: '',
+        author: '',
+        category: ''
+    });
 
     return (
         <div className="flex flex-col gap-5">
-            <FilterForm setTitleFilter={setTitleFilter}
-                        setAuthorFilter={setAuthorFilter}
-                        setCategoryFilter={setCategoryFilter}
-            />
+            <FilterForm setFilters={setFilters} />
 
-            <ProductList titleFilter={titleFilter}
-                         authorFilter={authorFilter}
-                         categoryFilter={categoryFilter}
-            />
+            <ProductList filters={filters} />
         </div>
     )
 }
