@@ -27,6 +27,30 @@ const api = {
             return wrap(result);
         });
     },
+
+    getCategories: async function() {
+        return delay(500).then(async () => {
+            const response = await fetch('http://localhost:8000/categories');
+            const categories = await response.json();
+
+            return wrap(categories);
+        })
+    },
+
+    getProducts: async function(categoryId) {
+        return delay(500).then(async () => {
+            const response = await fetch('http://localhost:8000/products');
+            const products = await response.json();
+
+            const filteredProducts = products
+                .filter(p => categoryId === '' || p.categoryId === categoryId);
+
+            console.log(categoryId, typeof categoryId, filteredProducts);
+
+            return wrap(filteredProducts);
+        })
+
+    }
 };
 
 export default api;
