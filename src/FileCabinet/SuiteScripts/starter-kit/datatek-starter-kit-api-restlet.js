@@ -43,8 +43,8 @@ define([
                 query: `
                     select c.id,
                            c.companyname as company_name,
-                           c.email,
-                           c.phone,
+                           c.email       as email,
+                           c.phone       as phone,
                            ea.city       as billing_city,
                            ea.state      as billing_state
                     
@@ -84,15 +84,15 @@ define([
             query: `
                 select top 10
                     i.id,
-                    i.itemid as item_number,
-                    i.description,
-                    i.custitem_dt_author as author,
-                    i.custitem_dt_image_url as image_url,
-                    i.itemid as item_name,
-                    i.custitem_dt_category as category_id,
-                    BUILTIN.DF(i.custitem_dt_category) as category,
-                    i.custitem_dt_reviews as review_count,
-                    i.custitem_dt_rating as rating
+                    i.itemid                            as item_number,
+                    i.description                       as description,
+                    i.custitem_dt_author                as author,
+                    i.custitem_dt_image_url             as image_url,
+                    i.itemid                            as item_name,
+                    i.custitem_dt_category              as category_id,
+                    BUILTIN.DF(i.custitem_dt_category)  as category,
+                    i.custitem_dt_reviews               as review_count,
+                    i.custitem_dt_rating                as rating
                     
                 from item i
                 
@@ -107,8 +107,9 @@ define([
         return query.runSuiteQL({
             query: `
                 select
-                    id as value,
+                    id   as value,
                     name as text
+                    
                 from customlist_dt_book_category
             `
         }).asMappedResults().map(mapPropertiesToCamelCase);

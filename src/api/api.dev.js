@@ -42,8 +42,6 @@ const api = {
             const response = await fetch('http://localhost:8000/products');
             const products = await response.json();
 
-            console.log({ title, author, category });
-
             const filteredProducts = products
                 .filter(p => !title || p.description.toLowerCase().includes(title.toLowerCase()))
                 .filter(p => !author || p.author.toLowerCase().includes(author.toLowerCase()))

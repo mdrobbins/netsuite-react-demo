@@ -4,8 +4,6 @@ import {PageLinks} from "./PageLinks";
 
 function ProductList({ filters }) {
     const filterValues = Object.values(filters);
-    console.log('filters', filters);
-    console.log('filterValues', filterValues);
 
     const { isPending, isSuccess, isError, data, error } = useQuery({
         queryKey: ['getProducts', [filterValues]],
