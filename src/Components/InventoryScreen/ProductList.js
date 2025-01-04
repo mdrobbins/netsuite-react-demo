@@ -14,6 +14,7 @@ function ProductList({ filters }) {
     return (
         <div>
             <ul className="divide-y divide-gray-800">
+                <PageLinks currentPage={2} maxPage={25}/>
                 {isSuccess &&
                     data.result &&
                     data.result.map(product => (
@@ -48,7 +49,6 @@ function ProductList({ filters }) {
                         </li>
                     ))}
             </ul>
-            <PageLinks/>
         </div>
     );
 }
