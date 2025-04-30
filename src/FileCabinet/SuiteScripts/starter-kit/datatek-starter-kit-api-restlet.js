@@ -20,6 +20,7 @@ define([
             searchCustomers,
             getProducts,
             getCategories,
+            getOpenPurchaseOrders,
         };
 
         const handler = actionRouter[action] || invalidAction;
@@ -119,6 +120,29 @@ define([
             })
             .asMappedResults()
             .map(mapPropertiesToCamelCase);
+    }
+
+    function getOpenPurchaseOrders() {
+        return query
+            .runSuiteQL({
+                query: `
+                    select t.id,
+                           t.tranid                     as po_number,
+                           t.trandate                   as date,
+                           t.entity                     as vendor_id,
+                           BUILTIN.DF(t.entity)         as vendor_name,
+                           t.status                     as status,
+                           BUILTIN.DF(t.status)         as status_name,
+                           t.approvalstatus             as approval_status,
+                           BUILTIN.DF(t.approvalstatus) as approval_status_name,
+                           abs(tl.foreignamount)        as amount,
+                    from transaction t
+                        inner join transactionline tl on tl.transaction = t.id and tl.mainline = 'T'
+                    where 1 = 1
+                      and t.recordtype = 'purchaseorder'
+                      and t.status in ('PurchOrd:A', 'PurchOrd:B')
+                `
+            }).asMappedResults().map(mapPropertiesToCamelCase);
     }
 
     function invalidAction({ action }) {

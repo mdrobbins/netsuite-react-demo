@@ -178,5 +178,31 @@
       "reviewCount": 126810,
       "rating": 4.89997871
     }
+  ],
+  "purchaseOrders": [
+    {
+      "id": 112897,
+      "poNumber": "1020",
+      "date": "4/30/2025",
+      "vendorId": 46,
+      "vendorName": "Terrence Decker",
+      "status": "B",
+      "statusName": "Purchase Order : Pending Receipt",
+      "approvalStatus": 2,
+      "approvalStatusName": "Approved",
+      "amount": 1234.4
+    },
+    {
+      "id": 112898,
+      "poNumber": "1021",
+      "date": "4/30/2025",
+      "vendorId": 46,
+      "vendorName": "Terrence Decker",
+      "status": "B",
+      "statusName": "Purchase Order : Pending Receipt",
+      "approvalStatus": 2,
+      "approvalStatusName": "Approved",
+      "amount": 1222234.4
+    }
   ]
 }

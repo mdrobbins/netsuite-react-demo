@@ -60,6 +60,15 @@ const api = {
             return wrap(filteredProducts);
         });
     },
+
+    getOpenPOs: async function () {
+        return delay(500).then(async () => {
+            const response = await fetch('http://localhost:8000/purchaseOrders');
+            const openPOs = await response.json();
+
+            return wrap(openPOs);
+        })
+    }
 };
 
 export default api;
