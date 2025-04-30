@@ -43,8 +43,18 @@ const api = {
             const products = await response.json();
 
             const filteredProducts = products
-                .filter(p => !title || p.description.toLowerCase().includes(title.toLowerCase()))
-                .filter(p => !author || p.author.toLowerCase().includes(author.toLowerCase()))
+                .filter(
+                    p =>
+                        !title ||
+                        p.description
+                            .toLowerCase()
+                            .includes(title.toLowerCase()),
+                )
+                .filter(
+                    p =>
+                        !author ||
+                        p.author.toLowerCase().includes(author.toLowerCase()),
+                )
                 .filter(p => !category || p.categoryId === category);
 
             return wrap(filteredProducts);

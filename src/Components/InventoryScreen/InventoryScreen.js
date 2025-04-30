@@ -1,13 +1,12 @@
-import {FilterForm} from "./FilterForm";
-import {ProductList} from "./ProductList";
-import {useState} from "react";
+import { FilterForm } from './FilterForm';
+import { ProductList } from './ProductList';
+import { useState } from 'react';
 
 function InventoryScreen() {
-
     const [filters, setFilters] = useState({
         title: '',
         author: '',
-        category: ''
+        category: '',
     });
 
     return (
@@ -16,7 +15,7 @@ function InventoryScreen() {
 
             <ProductList filters={filters} />
         </div>
-    )
+    );
 }
 
-export {InventoryScreen}
+export { InventoryScreen };

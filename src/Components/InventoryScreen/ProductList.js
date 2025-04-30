@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../api';
-import {PageLinks} from "./PageLinks";
+import { PageLinks } from './PageLinks';
 
 function ProductList({ filters }) {
     const filterValues = Object.values(filters);
@@ -14,7 +14,7 @@ function ProductList({ filters }) {
     return (
         <div>
             <ul className="divide-y divide-gray-800">
-                <PageLinks currentPage={12} maxPage={25}/>
+                <PageLinks currentPage={12} maxPage={25} />
                 {isSuccess &&
                     data.result &&
                     data.result.map(product => (

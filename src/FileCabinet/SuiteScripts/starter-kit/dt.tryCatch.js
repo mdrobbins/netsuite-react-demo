@@ -10,12 +10,12 @@ define(['N/log', 'N/error'], function (log, error) {
     function tryCatch() {
         const parameters = Array.prototype.slice.call(arguments);
         const functionToExecute = parameters.shift();
-        if (typeof(functionToExecute) === 'function') {
+        if (typeof functionToExecute === 'function') {
             try {
                 const result = functionToExecute.apply(this, parameters);
                 return {
                     isSuccess: true,
-                    result: result
+                    result: result,
                 };
             } catch (ex) {
                 const response = {
@@ -24,8 +24,8 @@ define(['N/log', 'N/error'], function (log, error) {
                     details: {
                         functionCalled: functionToExecute.name,
                         parameters: JSON.stringify(parameters),
-                        stackTrace: ex.stack
-                    }
+                        stackTrace: ex.stack,
+                    },
                 };
                 log.error('Failed to call function', JSON.stringify(response));
                 return response;
@@ -33,8 +33,10 @@ define(['N/log', 'N/error'], function (log, error) {
         } else {
             throw error.create({
                 name: 'INVALID_ARGUMENT',
-                message: functionToExecute + ' is not a function and cannot be called.',
-                notifyOff: false
+                message:
+                    functionToExecute +
+                    ' is not a function and cannot be called.',
+                notifyOff: false,
             });
         }
     }

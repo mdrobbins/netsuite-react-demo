@@ -1,7 +1,5 @@
 function CrmScreen() {
-    return (
-        <div className="text-white">CRM Screen</div>
-    )
+    return <div className="text-white">CRM Screen</div>;
 }
 
-export { CrmScreen }
+export { CrmScreen };

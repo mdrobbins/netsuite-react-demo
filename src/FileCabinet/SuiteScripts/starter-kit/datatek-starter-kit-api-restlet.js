@@ -19,7 +19,7 @@ define([
         const actionRouter = {
             searchCustomers,
             getProducts,
-            getCategories
+            getCategories,
         };
 
         const handler = actionRouter[action] || invalidAction;
@@ -69,19 +69,20 @@ define([
         let filter = '';
 
         if (title) {
-            filter = `${filter} AND lower(description) like '%${title.toLowerCase()}%'`
+            filter = `${filter} AND lower(description) like '%${title.toLowerCase()}%'`;
         }
 
         if (author) {
-            filter = `${filter} AND lower(custitem_dt_author) like '%${author.toLowerCase()}%'`
+            filter = `${filter} AND lower(custitem_dt_author) like '%${author.toLowerCase()}%'`;
         }
 
         if (category) {
             filter = `${filter} AND custitem_dt_category = ${category}`;
         }
 
-        return query.runSuiteQL({
-            query: `
+        return query
+            .runSuiteQL({
+                query: `
                 select top 10
                     i.id,
                     i.itemid                            as item_number,
@@ -99,20 +100,25 @@ define([
                 where 1 = 1
                     and i.itemtype = 'NonInvtPart'
                     ${filter}            
-            `
-        }).asMappedResults().map(mapPropertiesToCamelCase);
+            `,
+            })
+            .asMappedResults()
+            .map(mapPropertiesToCamelCase);
     }
 
     function getCategories() {
-        return query.runSuiteQL({
-            query: `
+        return query
+            .runSuiteQL({
+                query: `
                 select
                     id   as value,
                     name as text
                     
                 from customlist_dt_book_category
-            `
-        }).asMappedResults().map(mapPropertiesToCamelCase);
+            `,
+            })
+            .asMappedResults()
+            .map(mapPropertiesToCamelCase);
     }
 
     function invalidAction({ action }) {

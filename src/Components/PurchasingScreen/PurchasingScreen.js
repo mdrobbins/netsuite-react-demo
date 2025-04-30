@@ -1,7 +1,5 @@
 function PurchasingScreen() {
-    return (
-        <div className="text-white">Purchasing Screen</div>
-    )
+    return <div className="text-white">Purchasing Screen</div>;
 }
 
-export { PurchasingScreen }
+export { PurchasingScreen };

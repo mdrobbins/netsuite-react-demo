@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {NavigationLink} from "./NavigationLink";
+import { NavigationLink } from './NavigationLink';
 
 function PageHeader() {
     return (
@@ -19,10 +19,13 @@ function PageHeader() {
                             </svg>
                         </div>
                         <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                            <NavigationLink to="/" label="Search Page"/>
-                            <NavigationLink to="/inventory" label="Inventory"/>
-                            <NavigationLink to="/purchasing" label="Purchasing"/>
-                            <NavigationLink to="/crm" label="CRM"/>
+                            <NavigationLink to="/" label="Search Page" />
+                            <NavigationLink to="/inventory" label="Inventory" />
+                            <NavigationLink
+                                to="/purchasing"
+                                label="Purchasing"
+                            />
+                            <NavigationLink to="/crm" label="CRM" />
                         </div>
                     </div>
                     <div className="flex items-center">

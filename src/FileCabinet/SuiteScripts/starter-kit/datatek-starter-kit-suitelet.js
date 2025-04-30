@@ -4,16 +4,16 @@
  * @NModuleScope Public
  */
 define(['N/log', 'N/query', 'N/url'], function (log, query, url) {
-  function onRequest(context) {
-    const apiEndpoint = url.resolveScript({
-      scriptId: 'customscript_dt_starter_kit_api',
-      deploymentId: 'customdeploy_dt_starter_kit_api',
-    });
+    function onRequest(context) {
+        const apiEndpoint = url.resolveScript({
+            scriptId: 'customscript_dt_starter_kit_api',
+            deploymentId: 'customdeploy_dt_starter_kit_api',
+        });
 
-    const cssUrl = getFileUrl('datatek-starter-kit.css');
-    const jsUrl = getFileUrl('datatek-starter-kit.js');
+        const cssUrl = getFileUrl('datatek-starter-kit.css');
+        const jsUrl = getFileUrl('datatek-starter-kit.js');
 
-    context.response.write(`
+        context.response.write(`
       <!doctype html>
       <html lang="en">       
         <head>
@@ -31,27 +31,27 @@ define(['N/log', 'N/query', 'N/url'], function (log, query, url) {
         <script type="text/javascript" src="${jsUrl}"></script>
       </html>
     `);
-  }
+    }
 
-  //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
-  function getFileUrl(filename) {
-    const results = query
-      .runSuiteQL({
-        query: `
+    function getFileUrl(filename) {
+        const results = query
+            .runSuiteQL({
+                query: `
           select url
           from file
           where name = '${filename}'
         `,
-      })
-      .asMappedResults();
+            })
+            .asMappedResults();
 
-    if (Array.isArray(results) && results.length > 0) {
-      return results[0]['url'];
+        if (Array.isArray(results) && results.length > 0) {
+            return results[0]['url'];
+        }
     }
-  }
 
-  return {
-    onRequest,
-  };
+    return {
+        onRequest,
+    };
 });
