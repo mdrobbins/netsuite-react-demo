@@ -26,6 +26,7 @@ function PageHeader() {
                                 label="Purchasing"
                             />
                             <NavigationLink to="/crm" label="CRM" />
+                            <NavigationLink to="/customer/CUST-1001" label="Customer Details" />
                         </div>
                     </div>
                     <div className="flex items-center">

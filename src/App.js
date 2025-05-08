@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CrmScreen } from './Components/CrmScreen/CrmScreen';
 import { InventoryScreen } from './Components/InventoryScreen/InventoryScreen';
 import { PurchasingScreen } from './Components/PurchasingScreen/PurchasingScreen';
+import { CustomerDetails } from './Components/CustomerDetailsScreen/CustomerDetails';
 import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ function App() {
                                     element={<PurchasingScreen />}
                                 />
                                 <Route path="/crm" element={<CrmScreen />} />
+                                <Route path="/customer/:id" element={<CustomerDetails />} />
                             </Routes>
                         </div>
                     </div>
