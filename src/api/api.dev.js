@@ -28,6 +28,15 @@ const api = {
         });
     },
 
+    getCustomerDetails: async function(customerId) {
+        return delay(500).then(async () => {
+            const response = await fetch('http://localhost:8000/customerDetails');
+            const customers = await response.json();
+
+            return wrap(customers);
+        });
+    },
+
     getCategories: async function () {
         return delay(500).then(async () => {
             const response = await fetch('http://localhost:8000/categories');

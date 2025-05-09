@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../api';
+import { Link } from 'react-router-dom';
 
 function SearchResults({ searchText }) {
     const { isPending, isSuccess, isError, data, error } = useQuery({
@@ -57,16 +58,14 @@ function SearchResults({ searchText }) {
                                                 data.result.map(customer => (
                                                     <tr className="hover:bg-slate-500/10">
                                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                                                            <a
-                                                                href={`/app/common/entity/custjob.nl?id=${customer.id}`}
-                                                                target="_blank"
-                                                                rel="noreferrer"
+                                                            <Link
+                                                                to={`/customer/${customer.id}`}
                                                                 className="text-indigo-400 hover:text-indigo-300"
                                                             >
                                                                 {
                                                                     customer.companyName
                                                                 }
-                                                            </a>
+                                                            </Link>
                                                         </td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-slate-300">
                                                             {customer.email}

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { clsx } from 'clsx';
+import { Note } from '../icons/Note';
+import { Envelope } from '../icons/Envelope';
+import { Phone } from '../icons/Phone';
 
 function ActivityLog({ customerId }) {
   const [activities, setActivities] = useState([]);
@@ -62,9 +65,9 @@ function ActivityLog({ customerId }) {
 
   const getActivityIcon = (type) => {
     switch (type) {
-      case 'note': return '📝';
-      case 'email': return '📧';
-      case 'call': return '📞';
+      case 'note': return <Note/>;
+      case 'email': return <Envelope/>;
+      case 'call': return <Phone/>;
       default: return '📌';
     }
   };
@@ -97,12 +100,9 @@ function ActivityLog({ customerId }) {
         {activities.map((activity) => (
           <div key={activity.id} className="flex gap-4">
             <div className={clsx(
-              "flex items-center justify-center w-10 h-10 rounded-full flex-shrink-0",
-              activity.type === 'note' && "bg-yellow-900",
-              activity.type === 'email' && "bg-blue-900",
-              activity.type === 'call' && "bg-green-900"
+              "flex items-center justify-center w-10 h-10 rounded-full flex-shrink-0 text-white"
             )}>
-              <span className="text-lg">{getActivityIcon(activity.type)}</span>
+              <span className="text-lg p-2 rounded-full bg-gray-700">{getActivityIcon(activity.type)}</span>
             </div>
             
             <div className="flex-1">

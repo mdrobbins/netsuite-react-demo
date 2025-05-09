@@ -10,6 +10,18 @@ import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient();
 
+function AppRoutes() {
+    return (
+        <Routes>
+            <Route path="/" element={<SearchScreen />} />
+            <Route path="/inventory" element={<InventoryScreen />} />
+            <Route path="/purchasing" element={<PurchasingScreen />} />
+            <Route path="/crm" element={<CrmScreen />} />
+            <Route path="/customer/:id" element={<CustomerDetails />} />
+        </Routes>
+    );
+}
+
 function App() {
     return (
         <div className="h-full bg-slate-900">
@@ -19,19 +31,7 @@ function App() {
 
                     <div className="h-full">
                         <div className="p-8 w-full max-w-7xl mx-auto text-slate-300 space-y-8">
-                            <Routes>
-                                <Route path="/" element={<SearchScreen />} />
-                                <Route
-                                    path="/inventory"
-                                    element={<InventoryScreen />}
-                                />
-                                <Route
-                                    path="/purchasing"
-                                    element={<PurchasingScreen />}
-                                />
-                                <Route path="/crm" element={<CrmScreen />} />
-                                <Route path="/customer/:id" element={<CustomerDetails />} />
-                            </Routes>
+                            <AppRoutes />
                         </div>
                     </div>
                 </HashRouter>

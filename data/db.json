@@ -204,5 +204,31 @@
       "approvalStatusName": "Approved",
       "amount": 1222234.4
     }
-  ]
+  ],
+  "customerDetails": {
+    "id": "CUST-1001",
+    "name": "Acme Corporation",
+    "email": "contact@acmecorp.com",
+    "phone": "(555) 123-4567",
+    "shippingAddress": {
+      "street": "123 Business Ave",
+      "city": "Enterprise City",
+      "state": "CA",
+      "zip": "94105",
+      "country": "USA"
+    },
+    "billingAddress": {
+      "street": "123 Business Ave, Suite 500",
+      "city": "Enterprise City",
+      "state": "CA",
+      "zip": "94105",
+      "country": "USA"
+    },
+    "metrics": {
+      "totalSpend": 125750,
+      "orderCount": 27,
+      "openBalance": 4657,
+      "pastDueBalance": 347
+    }
+  }
 }

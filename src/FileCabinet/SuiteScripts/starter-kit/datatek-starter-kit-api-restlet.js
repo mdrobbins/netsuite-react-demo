@@ -66,6 +66,56 @@ define([
             .map(mapPropertiesToCamelCase);
     }
 
+    function getCustomerDetails({ customerId }) {
+        const metrics = getCustomerMetrics({ customerId });
+
+
+    }
+
+    function getCustomerMetrics({ customerId }) {
+        const results = query.runSuiteQL({
+            query: `
+                select --top 10
+                       tl.mainline                                                             as main_line,
+                       case when mainline = 'T' then foreignamount else foreignamount * -1 end as amount,
+                       tl.foreignamountunpaid                                                  as remaining,
+                       tl.item                                                                 as item_id,
+                       BUILTIN.DF(tl.item)                                                     as item_name,
+                       tl.duedate                                                              as due_date,
+                       tl.quantity * -1                                                        as quantity,
+                
+                from transaction t
+                         inner join transactionline tl on tl.transaction = t.id
+                
+                where 1 = 1
+                  and t.entity = 2828
+                  and t.recordtype = 'invoice'
+                  and tl.mainline = 'T'
+                  and tl.taxline = 'F'
+                  and tl.iscogs = 'F'
+                  and (tl.itemtype is null or tl.itemtype != 'ShipItem')
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
+
+        const totalSpend = results
+            .filter(r => r.mainLine === 'T')
+            .reduce((acc, item) => acc + item.amount, 0);
+
+        const orderCount = results
+            .filter(r => r.mainLine === 'T')
+            .length;
+
+        const openBalance = results
+            .filter(r => r.mainLine === 'T')
+            .reduce((acc, item) => acc + item.remaining, 0);
+
+        const pastDueBalance = results
+            .filter(r => r.mainLine === 'T' && r.remaining > 0 && new Date(r.dueDate) < new Date())
+            .reduce((acc, item) => acc + item.remaining, 0);
+
+        return { totalSpend, orderCount, openBalance, pastDueBalance };
+    }
+
     function getProducts({ title, author, category }) {
         let filter = '';
 

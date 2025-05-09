@@ -1,51 +1,22 @@
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MetricWidget } from './MetricWidget';
 import { ContactInfoCard } from './ContactInfoCard';
 import { ActivityLog } from './ActivityLog';
+import {useQuery} from "@tanstack/react-query";
+import api from "../../api";
 
 function CustomerDetails() {
   const { id } = useParams();
-  const [customer, setCustomer] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Simulating data fetching
-  useEffect(() => {
-    // In a real app, this would be an API call using the id parameter
-    console.log(`Fetching customer data for ID: ${id}`);
-    
-    setTimeout(() => {
-      setCustomer({
-        id: id || 'CUST-1001',
-        name: 'Acme Corporation',
-        email: 'contact@acmecorp.com',
-        phone: '(555) 123-4567',
-        shippingAddress: {
-          street: '123 Business Ave',
-          city: 'Enterprise City',
-          state: 'CA',
-          zip: '94105',
-          country: 'USA'
-        },
-        billingAddress: {
-          street: '123 Business Ave, Suite 500',
-          city: 'Enterprise City',
-          state: 'CA',
-          zip: '94105',
-          country: 'USA'
-        },
-        metrics: {
-          totalSpend: 125750,
-          orderCount: 27,
-          avgOrderValue: 4657,
-          daysAsCustomer: 347
-        }
-      });
-      setIsLoading(false);
-    }, 1000);
-  }, [id]);
+  const { isPending, data } = useQuery({
+    queryKey: ['getCustomerDetails', [id]],
+    queryFn: () => api.getCustomerDetails(id),
+    retry: false,
+  });
 
-  if (isLoading) {
+  const customer = data?.result;
+
+  if (isPending || !customer) {
     return (
       <div className="animate-pulse">
         <h1 className="h-8 bg-slate-700 rounded w-1/3 mb-6"></h1>
@@ -69,29 +40,18 @@ function CustomerDetails() {
         <MetricWidget 
           title="Total Spend" 
           value={`$${customer.metrics.totalSpend.toLocaleString()}`} 
-          icon="dollar" 
-          trend="up" 
-          percent="12" 
         />
         <MetricWidget 
           title="Order Count" 
           value={customer.metrics.orderCount} 
-          icon="shopping-cart" 
-          trend="up" 
-          percent="8" 
         />
         <MetricWidget 
-          title="Avg Order Value" 
-          value={`$${customer.metrics.avgOrderValue.toLocaleString()}`} 
-          icon="chart-bar" 
-          trend="down" 
-          percent="3" 
+          title="Open Balance"
+          value={`$${customer.metrics.openBalance.toLocaleString()}`}
         />
         <MetricWidget 
-          title="Days as Customer" 
-          value={customer.metrics.daysAsCustomer} 
-          icon="calendar" 
-          trend="neutral" 
+          title="Past Due Balance"
+          value={`$${customer.metrics.pastDueBalance.toLocaleString()}`}
         />
       </div>
       
