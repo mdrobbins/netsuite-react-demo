@@ -45,7 +45,7 @@ const api = {
         return await response.json();
     },
 
-    getOpenPOs: async function () {
+    getOpenPurchaseOrders: async function () {
         const url = `${api.apiEndPoint}&action=getOpenPurchaseOrders`;
 
         const response = await this.makeAjaxCall(url);

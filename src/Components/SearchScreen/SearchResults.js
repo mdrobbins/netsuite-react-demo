@@ -16,34 +16,19 @@ function SearchResults({ searchText }) {
                 <table className="min-w-full divide-y divide-slate-700">
                     <thead>
                         <tr>
-                            <th
-                                scope="col"
-                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-300"
-                            >
+                            <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-300">
                                 Name
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300">
                                 Email
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300">
                                 Phone
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300">
                                 City
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-300">
                                 State
                             </th>
                         </tr>

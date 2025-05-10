@@ -8,7 +8,7 @@ function extractOrderStatus(status) {
 function PurchaseOrderList() {
     const { isPending, isSuccess, isError, data, error } = useQuery({
         queryKey: ['getPurchaseOrders'],
-        queryFn: () => api.getOpenPOs()
+        queryFn: () => api.getOpenPurchaseOrders()
     });
 
     if (isError) {
@@ -35,34 +35,19 @@ function PurchaseOrderList() {
                 <table className="min-w-full divide-y divide-slate-700">
                     <thead className="bg-slate-800/50">
                         <tr>
-                            <th
-                                scope="col"
-                                className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-white"
-                            >
+                            <th scope="col" className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-white" >
                                 Order #
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white" >
                                 Vendor
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-right text-sm font-semibold text-white"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-right text-sm font-semibold text-white" >
                                 Amount
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-center text-sm font-semibold text-white"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white" >
                                 Approval Status
                             </th>
-                            <th
-                                scope="col"
-                                className="px-3 py-3.5 text-center text-sm font-semibold text-white"
-                            >
+                            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white" >
                                 Status
                             </th>
                         </tr>
@@ -86,13 +71,10 @@ function PurchaseOrderList() {
                                         {order.vendorName}
                                     </td>
                                     <td className="whitespace-nowrap px-3 py-4 text-right text-sm text-slate-300">
-                                        {new Intl.NumberFormat(
-                                            'en-US',
-                                            {
+                                        {new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
                                                 currency: 'USD',
-                                            },
-                                        ).format(order.amount)}
+                                            }).format(order.amount)}
                                     </td>
                                     <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-slate-300">
                                         {order.approvalStatusName}
@@ -102,6 +84,7 @@ function PurchaseOrderList() {
                                     </td>
                                 </tr>
                             ))}
+
                         {isPending && (
                             <tr>
                                 <td colSpan="5" className="p-4">

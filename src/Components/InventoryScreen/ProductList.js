@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../api';
-import { PageLinks } from './PageLinks';
 
 function ProductList({ filters }) {
     const filterValues = Object.values(filters);

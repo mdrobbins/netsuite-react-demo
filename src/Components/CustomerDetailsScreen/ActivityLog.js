@@ -86,7 +86,6 @@ function ActivityLog({ customerId }) {
                             </div>
 
                             <p className="text-sm mt-1 text-slate-300 line-clamp-2" dangerouslySetInnerHTML={{ __html: activity.message }}>
-                                {/*{activity.message}*/}
                             </p>
 
                             <div className="flex justify-between mt-2 text-xs text-slate-400">
@@ -96,10 +95,6 @@ function ActivityLog({ customerId }) {
                     </div>
                 ))}
             </div>
-
-            <button className="mt-4 w-full py-2 bg-slate-700 text-slate-200 rounded-md hover:bg-slate-600 transition">
-                Load More Activity
-            </button>
         </div>
     );
 }

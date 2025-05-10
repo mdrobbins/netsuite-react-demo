@@ -79,7 +79,7 @@ const api = {
         });
     },
 
-    getOpenPOs: async function () {
+    getOpenPurchaseOrders: async function () {
         return delay(500).then(async () => {
             const response = await fetch('http://localhost:8000/purchaseOrders');
             const openPOs = await response.json();
