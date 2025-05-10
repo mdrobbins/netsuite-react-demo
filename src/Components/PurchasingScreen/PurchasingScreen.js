@@ -1,19 +1,24 @@
-import { useQuery } from '@tanstack/react-query';
-import api from '../../api';
+import { useState } from 'react';
 import { PurchaseOrderList } from './PurchaseOrderList';
 
-function extractOrderStatus(status) {
-    return status.split(' : ').pop();
-}
-
 function PurchasingScreen() {
+    const [searchText, setSearchText] = useState('');
+    const [statusFilter, setStatusFilter] = useState('open');
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSearchText(e.target.elements.searchText.value);
+    }
 
     return (
         <>
-            <div className="block min-w-0 grow bg-transparent py-1.5 pl-1 pr-3 text-center text-base text-white placeholder:text-gray-500 focus:outline focus:outline-0 sm:text-sm/6">
-                Open Purchase Orders
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold text-white mb-6">
+                    Open Purchase Orders
+                </h1>
             </div>
-            <PurchaseOrderList />
+
+            <PurchaseOrderList searchText={searchText} statusFilter={statusFilter} />
         </>
     );
 }
