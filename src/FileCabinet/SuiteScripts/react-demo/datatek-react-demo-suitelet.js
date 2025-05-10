@@ -6,12 +6,12 @@
 define(['N/log', 'N/query', 'N/url'], function (log, query, url) {
     function onRequest(context) {
         const apiEndpoint = url.resolveScript({
-            scriptId: 'customscript_dt_starter_kit_api',
-            deploymentId: 'customdeploy_dt_starter_kit_api',
+            scriptId: 'customscript_dt_react_demo_api',
+            deploymentId: 'customdeploy_dt_react_demo_api',
         });
 
-        const cssUrl = getFileUrl('datatek-starter-kit.css');
-        const jsUrl = getFileUrl('datatek-starter-kit.js');
+        const cssUrl = getFileUrl('datatek-react-demo.css');
+        const jsUrl = getFileUrl('datatek-react-demo.js');
 
         context.response.write(`
       <!doctype html>
@@ -23,7 +23,7 @@ define(['N/log', 'N/query', 'N/url'], function (log, query, url) {
             window.apiEndpoint = "${apiEndpoint}";
           </script>
           <link type="text/css" rel="stylesheet" href="${cssUrl}"/>
-          <title>Starter Kit - Customer Search</title>
+          <title>NetSuite React Demo</title>
         </head>
           <body class="bg-slate-900">
             <div id="root"></div>
