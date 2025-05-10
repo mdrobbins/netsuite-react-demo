@@ -2,13 +2,13 @@ import { SearchResults } from './SearchResults';
 import { useState } from 'react';
 import { Slide, toast } from 'react-toastify';
 import { Toast } from '../Toast';
+import { clsx } from 'clsx';
 
 function SearchScreen() {
     const [searchText, setSearchText] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-
         setSearchText(e.target.elements.searchText.value);
         // toast(<Toast title="Contact Created" message="This is a test message" />, {
         //     hideProgressBar: true,
@@ -20,28 +20,35 @@ function SearchScreen() {
 
     return (
         <>
-            <form
-                className="md:w-1/2 w-max-6xl justify-self-center flex flex-col gap-1"
-                onSubmit={handleSubmit}
-            >
-                <label
-                    htmlFor="searchText"
-                    className="block min-w-0 grow bg-transparent py-1.5 pl-1 pr-3 text-base text-white placeholder:text-gray-500 focus:outline focus:outline-0 sm:text-sm/6"
-                >
-                    Global Search
-                </label>
-                <div className="flex gap-2">
-                    <input
-                        id="searchText"
-                        name="searchText"
-                        className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                        defaultValue={searchText}
-                    />
-                    <button className="bg-indigo-500 text-slate-100 px-2 py-1 rounded">
-                        Search
-                    </button>
-                </div>
-            </form>
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold text-white mb-6">
+                    Customer Search
+                </h1>
+            </div>
+            
+                <form onSubmit={handleSubmit}>
+                    <div className="space-y-4">
+                        <div>
+                            <div className="flex gap-2">
+                                <input
+                                    id="searchText"
+                                    name="searchText"
+                                    className="block w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                    defaultValue={searchText}
+                                    autoFocus
+                                    placeholder="Search by name, email, or phone number..."
+                                />
+                                <button 
+                                    type="submit"
+                                    className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200"
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             <SearchResults searchText={searchText} />
         </>
     );

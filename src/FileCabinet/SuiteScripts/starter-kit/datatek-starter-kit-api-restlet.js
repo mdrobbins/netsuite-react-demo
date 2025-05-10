@@ -22,6 +22,7 @@ define([
             getProducts,
             getCategories,
             getOpenPurchaseOrders,
+            getCustomerActivity
         };
 
         const handler = actionRouter[action] || invalidAction;
@@ -86,6 +87,65 @@ define([
             shippingAddress,
             billingAddress,
         };
+    }
+
+    function getCustomerActivity({ customerId }) {
+        return [
+            ...getNotes(customerId),
+            ...getMessages(customerId),
+            ...getPhoneCalls(customerId)
+        ].sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    function getNotes(customerId) {
+        return query.runSuiteQL({
+            query: `
+                select 
+                    cn.notedate             as date, 
+                    'NOTE'                  as type,
+                    cn.author               as owner_id,
+                    BUILTIN.DF(cn.author)   as owner_name,
+                    cn.title,
+                    cn.note as message
+                from customernote cn
+                where 1 = 1
+                    and cn.entity = ${customerId}
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
+    }
+
+    function getMessages(customerId) {
+        return query.runSuiteQL({
+            query: `
+                select 
+                    to_char(p.createddate, 'YYYY-MM-DD hh:mm:ss')   as date, 
+                    'CALL'                                          as type,
+                    p.owner                                         as owner_id,
+                    BUILTIN.DF(p.owner)                             as owner_name,
+                    p.title,
+                    p.message,
+                from phonecall p
+                where 1 = 1
+                    and p.company = ${customerId}
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
+    }
+
+    function getPhoneCalls(customerId) {
+        return query.runSuiteQL({
+            query: `
+                select
+                    to_char(m.messagedate, 'YYYY-MM-DD hh:mm:ss')   as date,
+                    'EMAIL'                                         as type,
+                    m.author                                        as owner_id,
+                    BUILTIN.DF(m.author)                            as owner_name,
+                    m.subject                                       as title,
+                    m.message
+                from message m
+                where 1 = 1
+                    and m.entity = ${customerId}
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
     }
 
     function getAddress(type, customerData) {

@@ -19,7 +19,15 @@ const api = {
         const response = await this.makeAjaxCall(url);
 
         return await response.json();
-    },  
+    },
+
+    getCustomerActivity: async function(customerId) {
+        const url = `${api.apiEndPoint}&action=getCustomerActivity&customerId=${customerId}`;
+
+        const response = await this.makeAjaxCall(url);
+
+        return await response.json();
+    },
 
     getProducts: async function ({ title, author, category }) {
         const url = `${api.apiEndPoint}&action=getProducts&title=${title}&author=${author}&category=${category}`;

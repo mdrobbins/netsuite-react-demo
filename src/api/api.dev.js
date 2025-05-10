@@ -37,6 +37,15 @@ const api = {
         });
     },
 
+    getCustomerActivity: async function(customerId) {
+        return delay(500).then(async () => {
+            const response = await fetch('http://localhost:8000/activity');
+            const activity = await response.json();
+
+            return wrap(activity.sort((a, b) => b.date - a.date));
+        });
+    },
+
     getCategories: async function () {
         return delay(500).then(async () => {
             const response = await fetch('http://localhost:8000/categories');

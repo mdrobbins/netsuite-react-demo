@@ -230,5 +230,55 @@
       "openBalance": 4657,
       "pastDueBalance": 347
     }
-  }
+  },
+  "activity": [
+    {
+      "date": "2025-05-08 04:00:54",
+      "type": "NOTE",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "This is a test note",
+      "message": "This is the body of the note"
+    },
+    {
+      "date": "5/10/2025",
+      "type": "NOTE",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "Test transaction note",
+      "message": "This is the body of a transaction note"
+    },
+    {
+      "date": "2025-05-08 04:05:54",
+      "type": "CALL",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "Test phone call",
+      "message": "These are my notes about the phone call"
+    },
+    {
+      "date": "2025-05-10 03:05:01",
+      "type": "CALL",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "Phone call for transaction",
+      "message": "This is the body of a phone call record on a transaction"
+    },
+    {
+      "date": "2025-05-10 08:05:30",
+      "type": "EMAIL",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "DataTek Software, LLC: Invoice #3102808",
+      "message": "<HTML><HEAD><BASE href='https://tstdrv946228.app.netsuite.com/'><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></HEAD><BODY style=\"font-family:Verdana,Arial,Helvetica,sans-serif;font-size:10pt;\"><p>Pay up!</p></BODY></HTML>"
+    },
+    {
+      "date": "2025-05-08 09:05:17",
+      "type": "EMAIL",
+      "ownerId": -5,
+      "ownerName": "Mike Robbins",
+      "title": "This is the Subject",
+      "message": "<HTML><HEAD><BASE href='https://tstdrv946228.app.netsuite.com/'><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></HEAD><BODY style=\"font-family:Verdana,Arial,Helvetica,sans-serif;font-size:10pt;\"><p>This is the body of the message</p></BODY></HTML>"
+    }
+  ]
 }
