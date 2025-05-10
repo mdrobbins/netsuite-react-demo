@@ -33,7 +33,7 @@ function ProductList({ filters }) {
     }
 
     return (
-        <div className="rounded-lg bg-slate-800/30 border border-slate-700 border-t-0">
+        <div className="rounded-lg bg-slate-800/30 border border-slate-700">
             <ul className="divide-y divide-gray-800">
                 {isSuccess && data.result && data.result.map(product => (
                         <li key={product.id} className="flex justify-between gap-x-6 py-5 px-4 items-center hover:bg-slate-500/10 transition-colors duration-150">
