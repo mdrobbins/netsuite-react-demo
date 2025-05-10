@@ -11,20 +11,42 @@ function ProductList({ filters }) {
         retry: false,
     });
 
+    if (isPending) {
+        return (
+            <div className="animate-pulse">
+                <div className="h-8 bg-slate-700 rounded w-1/3 mb-6"></div>
+                <div className="grid grid-cols-1 gap-4 mb-6">
+                    {[...Array(5)].map((_, i) => (
+                        <div key={i} className="h-24 bg-slate-700 rounded-lg"></div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className="rounded-lg bg-red-500/10 p-6 text-red-400 border border-red-900">
+                <h3 className="text-lg font-medium mb-2">Error Loading Products</h3>
+                <p>{error.message || "Failed to load inventory data"}</p>
+            </div>
+        );
+    }
+
     return (
-        <div>
+        <div className="rounded-lg bg-slate-800/30 border border-slate-700 border-t-0">
+            <PageLinks currentPage={12} maxPage={25} />
             <ul className="divide-y divide-gray-800">
-                <PageLinks currentPage={12} maxPage={25} />
                 {isSuccess &&
                     data.result &&
                     data.result.map(product => (
                         <li
                             key={product.id}
-                            className="flex justify-between gap-x-6 py-5 px-2 items-center hover:bg-slate-500/10"
+                            className="flex justify-between gap-x-6 py-5 px-4 items-center hover:bg-slate-500/10 transition-colors duration-150"
                         >
                             <div className="flex min-w-0 gap-x-4 items-center">
                                 <img
-                                    className="w-12 h-18 flex-none bg-gray-800"
+                                    className="w-12 h-18 flex-none bg-gray-800 rounded"
                                     src={product.imageUrl}
                                     alt=""
                                 />

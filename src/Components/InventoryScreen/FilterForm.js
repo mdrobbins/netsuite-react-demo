@@ -17,52 +17,60 @@ function FilterForm({ setFilters }) {
         setFilters(values);
     }
 
+    if (isPending) {
+        return (
+            <div className="animate-pulse">
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="h-10 bg-slate-700 rounded"></div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
     return (
         <form
             onSubmit={handleSubmit}
-            className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+            className="mb-2"
         >
-            <div className="sm:col-span-2">
-                <label htmlFor="title" className="block text-sm/6 text-white">
-                    Title (contains)
-                </label>
-                <div className="mt-2">
+            <div className="flex space-x-4 ">
+                <div className="flex-1">
+                    <label htmlFor="title" className="block text-sm/6 text-white mb-2">
+                        Title (contains)
+                    </label>
                     <input
                         type="text"
                         name="title"
                         id="title"
-                        className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                        className="block w-full rounded-md bg-white/5 px-3 py-2 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                     />
                 </div>
-            </div>
 
-            <div className="sm:col-span-2">
-                <label htmlFor="author" className="block text-sm/6 text-white">
-                    Author (contains)
-                </label>
-                <div className="mt-2">
+                <div className="flex-1">
+                    <label htmlFor="author" className="block text-sm/6 text-white mb-2">
+                        Author (contains)
+                    </label>
                     <input
                         type="text"
                         name="author"
                         id="author"
-                        className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                        className="block w-full rounded-md bg-white/5 px-3 py-2 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                     />
                 </div>
-            </div>
 
-            <div className="sm:col-span-2">
-                <label
-                    htmlFor="category"
-                    className="block text-sm/6 text-white"
-                >
-                    Category
-                </label>
-                <div className="flex gap-4 items-end">
-                    <div className="mt-2 grid grid-cols-1 flex-1">
+                <div className="flex-1">
+                    <label
+                        htmlFor="category"
+                        className="block text-sm/6 text-white mb-2"
+                    >
+                        Category
+                    </label>
+                    <div className="grid grid-cols-1">
                         <select
                             id="category"
                             name="category"
-                            className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white/5 py-1.5 pr-8 pl-3 text-base text-white outline-1 -outline-offset-1 outline-white/10 *:bg-gray-800 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                            className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white/5 py-2 pr-8 pl-3 text-white outline-1 -outline-offset-1 outline-white/10 *:bg-gray-800 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                         >
                             <option value="">- No Category Selected -</option>
                             {isSuccess &&
@@ -87,8 +95,14 @@ function FilterForm({ setFilters }) {
                             ></path>
                         </svg>
                     </div>
-                    <button className="bg-indigo-500 text-white py-1.5 px-3 rounded">
-                        Apply
+                </div>
+                
+                <div className="flex items-end">
+                    <button 
+                        type="submit" 
+                        className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-md transition-colors duration-150 w-full"
+                    >
+                        Apply Filters
                     </button>
                 </div>
             </div>

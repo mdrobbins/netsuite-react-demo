@@ -32,7 +32,7 @@ function PageLinks({ currentPage, maxPage }) {
     }
 
     return (
-        <nav className="flex items-center justify-between border-t border-gray-700 px-4 mt-2 mb-8 sm:px-0">
+        <nav className="flex items-center justify-between border-t border-gray-700 px-6 md:px-8 mt-2 mb-8">
             <div className="-mt-px flex w-0 flex-1">
                 {currentPage !== 1 && (
                     <Link

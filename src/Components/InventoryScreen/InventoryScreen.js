@@ -10,11 +10,23 @@ function InventoryScreen() {
     });
 
     return (
-        <div className="flex flex-col gap-5">
-            <FilterForm setFilters={setFilters} />
-
-            <ProductList filters={filters} />
-        </div>
+        <>
+            <div>
+                <h1 className="text-2xl font-bold text-white mb-6">
+                    Inventory Management
+                </h1>
+            </div>
+            
+            {/* Filters Section */}
+            <div className="mb-6">
+                <FilterForm setFilters={setFilters} />
+            </div>
+            
+            {/* Products Section */}
+            <div>
+                <ProductList filters={filters} />
+            </div>
+        </>
     );
 }
 
