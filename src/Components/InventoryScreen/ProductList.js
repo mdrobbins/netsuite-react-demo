@@ -14,7 +14,6 @@ function ProductList({ filters }) {
     if (isPending) {
         return (
             <div className="animate-pulse">
-                <div className="h-8 bg-slate-700 rounded w-1/3 mb-6"></div>
                 <div className="grid grid-cols-1 gap-4 mb-6">
                     {[...Array(5)].map((_, i) => (
                         <div key={i} className="h-24 bg-slate-700 rounded-lg"></div>
@@ -35,21 +34,11 @@ function ProductList({ filters }) {
 
     return (
         <div className="rounded-lg bg-slate-800/30 border border-slate-700 border-t-0">
-            <PageLinks currentPage={12} maxPage={25} />
             <ul className="divide-y divide-gray-800">
-                {isSuccess &&
-                    data.result &&
-                    data.result.map(product => (
-                        <li
-                            key={product.id}
-                            className="flex justify-between gap-x-6 py-5 px-4 items-center hover:bg-slate-500/10 transition-colors duration-150"
-                        >
+                {isSuccess && data.result && data.result.map(product => (
+                        <li key={product.id} className="flex justify-between gap-x-6 py-5 px-4 items-center hover:bg-slate-500/10 transition-colors duration-150">
                             <div className="flex min-w-0 gap-x-4 items-center">
-                                <img
-                                    className="w-12 h-18 flex-none bg-gray-800 rounded"
-                                    src={product.imageUrl}
-                                    alt=""
-                                />
+                                <img className="w-12 h-18 flex-none bg-gray-800 rounded" src={product.imageUrl} alt="" />
                                 <div className="min-w-0 flex-auto">
                                     <p className="text-sm/6 truncate font-semibold text-slate-200">
                                         {product.description}

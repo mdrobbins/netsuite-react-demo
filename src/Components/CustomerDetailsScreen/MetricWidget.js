@@ -14,10 +14,7 @@ function MetricWidget({ title, value, trend, percent, className }) {
   };
 
   return (
-    <div className={clsx(
-      "bg-slate-800 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow border border-slate-700",
-      className
-    )}>
+    <div className={clsx("bg-slate-800 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow border border-slate-700", className)}>
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-sm font-medium text-slate-300">{title}</h3>
       </div>
