@@ -207,18 +207,18 @@
   ],
   "customerDetails": {
     "id": "CUST-1001",
-    "name": "Acme Corporation",
+    "companyName": "Acme Corporation",
     "email": "contact@acmecorp.com",
     "phone": "(555) 123-4567",
     "shippingAddress": {
-      "street": "123 Business Ave",
+      "address1": "123 Business Ave",
       "city": "Enterprise City",
       "state": "CA",
       "zip": "94105",
       "country": "USA"
     },
     "billingAddress": {
-      "street": "123 Business Ave, Suite 500",
+      "address1": "123 Business Ave, Suite 500",
       "city": "Enterprise City",
       "state": "CA",
       "zip": "94105",

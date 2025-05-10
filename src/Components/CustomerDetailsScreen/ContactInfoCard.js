@@ -6,7 +6,7 @@ function ContactInfoCard({ customer, className }) {
   const formatAddress = (address) => {
     return (
       <div className="space-y-1">
-        <div>{address.street}</div>
+        <div>{address.address1}</div>
         <div>{address.city}, {address.state} {address.zip}</div>
         <div>{address.country}</div>
       </div>

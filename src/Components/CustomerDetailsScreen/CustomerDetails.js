@@ -33,7 +33,14 @@ function CustomerDetails() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-white mb-6">Customer: {customer.name}</h1>
+        <div>
+          <h1 className="inline text-2xl font-bold text-white mb-6">
+              Customer:
+              <a href={`/app/common/entity/custjob.nl?id=${customer.id}`} target="_blank" className="hover:underline text-indigo-400 ml-2">
+                  {customer.companyName}
+              </a>
+          </h1>
+        </div>
       
       {/* Metrics Widgets */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">

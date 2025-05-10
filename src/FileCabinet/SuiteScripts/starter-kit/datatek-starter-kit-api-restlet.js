@@ -18,6 +18,7 @@ define([
 
         const actionRouter = {
             searchCustomers,
+            getCustomerDetails,
             getProducts,
             getCategories,
             getOpenPurchaseOrders,
@@ -67,12 +68,69 @@ define([
     }
 
     function getCustomerDetails({ customerId }) {
-        const metrics = getCustomerMetrics({ customerId });
+        const metrics = getCustomerMetrics(customerId);
 
+        const customerData = getCustomerData(customerId);
 
+        const { id, companyName, email, phone } = customerData[0];
+
+        const shippingAddress = getAddress('shipping', customerData);
+        const billingAddress = getAddress('billing', customerData);
+
+        return {
+            id,
+            companyName,
+            email,
+            phone,
+            metrics,
+            shippingAddress,
+            billingAddress,
+        };
     }
 
-    function getCustomerMetrics({ customerId }) {
+    function getAddress(type, customerData) {
+        const address = customerData.find(a => a[type] === 'T');
+
+        const { address1, address2, city, state, zip, country } = address;
+
+        return {
+            address1,
+            address2,
+            city,
+            state,
+            zip,
+            country,
+        };
+    }
+
+    function getCustomerData(customerId) {
+        return query.runSuiteQL({
+            query: `
+                select c.id,
+                       c.companyname       as company_name,
+                       c.email,
+                       c.phone,
+                       cab.defaultshipping as shipping,
+                       cab.defaultbilling  as billing,
+                       cabea.addr1         as address1,
+                       cabea.addr2         as address2,
+                       cabea.city,
+                       cabea.state,
+                       cabea.zip,
+                       cabea.country,
+
+                from customer c
+                         left join customeraddressbook cab
+                                   on cab.entity = c.id and (cab.defaultbilling = 'T' or cab.defaultshipping = 'T')
+                         inner join customerAddressbookEntityAddress cabea on cab.addressbookaddress = cabea.nkey
+
+                where 1 = 1
+                  and c.id = ${customerId}
+            `
+        }).asMappedResults().map(mapPropertiesToCamelCase);
+    }
+
+    function getCustomerMetrics(customerId) {
         const results = query.runSuiteQL({
             query: `
                 select --top 10
@@ -88,7 +146,7 @@ define([
                          inner join transactionline tl on tl.transaction = t.id
                 
                 where 1 = 1
-                  and t.entity = 2828
+                  and t.entity = ${customerId}
                   and t.recordtype = 'invoice'
                   and tl.mainline = 'T'
                   and tl.taxline = 'F'
