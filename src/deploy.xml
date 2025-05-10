@@ -1,6 +1,6 @@
 <deploy>
     <files>
-        <path>~/FileCabinet/SuiteScripts/starter-kit/*</path>
+        <path>~/FileCabinet/SuiteScripts/react-demo/*</path>
     </files>
     <objects>
         <path>~/Objects/*</path>

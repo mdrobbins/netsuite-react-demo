@@ -1,22 +1,22 @@
-<restlet scriptid="customscript_dt_starter_kit_api">
+<restlet scriptid="customscript_dt_react_demo_api">
   <description></description>
   <isinactive>F</isinactive>
-  <name>DT | Starter Kit - API</name>
+  <name>DT | React Demo - API</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
   <notifyuser>F</notifyuser>
-  <scriptfile>[/SuiteScripts/starter-kit/datatek-starter-kit-api-restlet.js]</scriptfile>
+  <scriptfile>[/SuiteScripts/react-demo/datatek-react-demo-api-restlet.js]</scriptfile>
   <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_dt_starter_kit_api">
+    <scriptdeployment scriptid="customdeploy_dt_react_demo_api">
       <allemployees>F</allemployees>
       <allpartners>F</allpartners>
       <allroles>T</allroles>
       <audslctrole></audslctrole>
       <isdeployed>T</isdeployed>
       <loglevel>DEBUG</loglevel>
-      <status>TESTING</status>
-      <title>DT | Starter Kit - API</title>
+      <status>RELEASED</status>
+      <title>DT | React Demo - API</title>
     </scriptdeployment>
   </scriptdeployments>
 </restlet>

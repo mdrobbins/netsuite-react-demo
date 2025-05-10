@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mv build/datatek-starter-kit.js src/FileCabinet/SuiteScripts/starter-kit &&
-mv build/datatek-starter-kit.css src/FileCabinet/SuiteScripts/starter-kit &&
+mv build/datatek-react-demo.js src/FileCabinet/SuiteScripts/react-demo &&
+mv build/datatek-react-demo.css src/FileCabinet/SuiteScripts/react-demo &&
 
 rm -rf build

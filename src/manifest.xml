@@ -1,5 +1,5 @@
 <manifest projecttype="ACCOUNTCUSTOMIZATION">
-  <projectname>StarterKit</projectname>
+  <projectname>DataTek - React Demo</projectname>
   <frameworkversion>1.0</frameworkversion>
   <dependencies>
     <features>
