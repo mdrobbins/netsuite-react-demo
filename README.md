@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Understanding the NetSuite React Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The purpose of this project is to demonstrate a clean project structure for developing NetSuite Suitelets using React.
 
-## Available Scripts
+The idea is to be able to develop and test locally and still be easy to deploy and entire application including the compiled JavaScript and CSS assets as well as the NetSuite Script and Deployment records using the SuiteCloud Development Framework.
 
-In the project directory, you can run:
+This provides a modern development experience and is also comfortable to traditional NetSuite developers.
 
-### `npm start`
+## Local Development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To clone the project locally and install all JS dependencies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/mdrobbins/netsuite-react-demo.git
+cd netsuite-react-demo
+npm install
+```
 
-### `npm test`
+To run the project locally for Development:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Start the local API server
 
-### `npm run build`
+For local development, this project uses `json-server` and stores the data in the `data/db.json` file.  This allows for easy local development.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To start the API server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run api-server
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Start the application
 
-### `npm run eject`
+To start the development build of the application locally:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm run start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open your browser and navigate to `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Deploying to Netsuite
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project assumes you have the SuiteCloud Development Framework CLI installed and configured.  Explaining how to use the CLI is beyond the scope of this project.
 
-## Learn More
+There are three `npm` scripts used to deploy this project to a Netsuite environment:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The command creates a production build of the React application.  It uses `react-app-rewired` and the `config-overrides.js` file to prevent the native code-splitting in React apps to ensure the app builds as a single JavaScript file.  The NetSuite file cabinet doesn't act like a traditional file system so code-splitting doesn't work.
 
-### Code Splitting
+This command also builds the JS and CSS files without file hashes in the name.  This ensures the files have the same name after each build so deploying to NetSuite always overwrites the files already there.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm run clean
+```
 
-### Analyzing the Bundle Size
+This command move the production-built JS and CSS files from the build folder to the `FileCabinet/SuiteScripts/react-demo` folder the delets the `build` folder.  This colocates the JS and CSS files with the Suitelet and RESTlet files being deployed to NetSuite.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run deploy
+```
 
-### Making a Progressive Web App
+This command runs `npm run build`, `npm run clean`, and uses SDF to run `suitecloud project:deploy`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This command will deploy all of the files in the `FileCabinet/Suitescripts/react-demo` folder.  Then create or update the Suitelet and RESTlet script records in NetSuite.
 
-### Advanced Configuration
+Prior to running this command, you should have SDF configured to deploy to the NetSuite account of your choice with this command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+suitecloud account:setup
+```
 
-### Deployment
+## Running the application in NetSuite
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+After deploying the application to NetSuite, you can launch the application by navigating to:
 
-### `npm run build` fails to minify
+```aiignore
+Setup > Customer > DataTek - NetSuite React Demo
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Explaining the Suitelet
+
+The Suitelet does a few things which makes it straight-forward to deploy this app to any account and not worry about different IDs for scripts and media items.  This deploy works anywhere.
+
+* Look up the URL for the API RESTlet.  Because the URL will be different in every environment, we perform the lookup here and write the API Endpoint to the `window` object so the React application can retrieve that value.
+* Look up the URLs for the React JS and CSS files.  Again, these URL will be different in every NetSuite environment.
+* Output a very simple HTML page with references to the React JS and CSS files.  
+
+The browser does all the rest.
+
+## Explaining the RESTlet
+
